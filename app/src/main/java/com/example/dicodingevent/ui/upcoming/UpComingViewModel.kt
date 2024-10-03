@@ -15,13 +15,18 @@ class UpComingViewModel : ViewModel() {
     private val _listUpComing = MutableLiveData<List<ListEventsItem>>()
     val listUpComing: LiveData<List<ListEventsItem>> = _listUpComing
 
+    companion object {
+        private const val TAG = "UpComingViewModel"
+        private const val ACTIVE = 1
+    }
+
     init {
         getUpComingEvent()
     }
 
     private fun getUpComingEvent() {
 
-        val client = ApiConfig.getApiService().getAllEvents()
+        val client = ApiConfig.getApiService().getAllEvents(ACTIVE)
         Log.e("Tes312", "onFailure: ${client.request().body}")
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {

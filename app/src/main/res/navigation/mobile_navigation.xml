@@ -8,19 +8,17 @@
     <fragment
             android:id="@+id/navigation_upcoming"
             android:name="com.example.dicodingevent.ui.upcoming.UpComingFragment"
-            android:label="UpComingFragment"
-            tools:layout="@layout/fragment_up_coming"/>
+            android:label="UpComing"
+            tools:layout="@layout/fragment_up_coming">
+        <action android:id="@+id/action_navigation_upcoming_to_navigation_finished"
+                app:destination="@id/navigation_finished"/>
+    </fragment>
 
 
     <fragment
-            android:id="@+id/navigation_dashboard"
-            android:name="com.example.dicodingevent.ui.dashboard.DashboardFragment"
-            android:label="@string/title_dashboard"
-            tools:layout="@layout/fragment_dashboard"/>
+            android:id="@+id/navigation_finished"
+            android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
+            android:label="@string/title_finished"
+            tools:layout="@layout/fragment_finished"/>
 
-    <fragment
-            android:id="@+id/navigation_notifications"
-            android:name="com.example.dicodingevent.ui.notifications.NotificationsFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications"/>
 </navigation>
