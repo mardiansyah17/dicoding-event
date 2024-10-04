@@ -21,17 +21,6 @@ class UpComingFragment : Fragment() {
 
     private val viewModel: UpComingViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +35,6 @@ class UpComingFragment : Fragment() {
             binding.rvUpComing.adapter = adapter
         }
 
-//        viewModel.listUpComing.observe(this) { data ->
-//            val adapter = UpComingAdapter(data)
-//            binding.rvUpComing.adapter = adapter
-//        }
         return binding.root
     }
 
