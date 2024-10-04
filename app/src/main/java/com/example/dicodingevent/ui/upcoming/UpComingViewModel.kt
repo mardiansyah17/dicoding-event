@@ -15,6 +15,13 @@ class UpComingViewModel : ViewModel() {
     private val _listUpComing = MutableLiveData<List<ListEventsItem>>()
     val listUpComing: LiveData<List<ListEventsItem>> = _listUpComing
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+
     companion object {
         private const val TAG = "UpComingViewModel"
         private const val ACTIVE = 1
@@ -25,23 +32,26 @@ class UpComingViewModel : ViewModel() {
     }
 
     private fun getUpComingEvent() {
+        _isLoading.value = true
 
         val client = ApiConfig.getApiService().getAllEvents(ACTIVE)
         Log.e("Tes312", "onFailure: ${client.request().body}")
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
                 Log.e("UpComingViewModel", "onFailure: ${response.message()}")
-
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUpComing.value = response.body()?.listEvents
-                    Log.d("UpComingViewModel", "onResponse: ${response.body()?.listEvents}")
                 } else {
                     Log.e("UpComingViewModel", "onFailure: ${response.message()}")
                 }
             }
 
-            override fun onFailure(p0: Call<AllEventResponse>, p1: Throwable) {
-                Log.e("UpComingViewModel", "onFailure: ${p1.message}")
+            override fun onFailure(p0: Call<AllEventResponse>, error: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = error.message
+
+                Log.e("UpComingViewModel", "onFailure: ${error.message}")
 
             }
         })

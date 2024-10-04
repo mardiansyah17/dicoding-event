@@ -15,6 +15,11 @@ class FinishedViewModel : ViewModel() {
     private val _listFinished = MutableLiveData<List<ListEventsItem>>()
     val listFinished: LiveData<List<ListEventsItem>> = _listFinished
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    private val _errorMessage = MutableLiveData<String>()
+    val isLoading: LiveData<Boolean> = _isLoading
+    val errorMessage: LiveData<String> = _errorMessage
+
     companion object {
         private const val TAG = "FinishedViewModel"
         private const val ACTIVE = 0
@@ -26,13 +31,15 @@ class FinishedViewModel : ViewModel() {
     }
 
     private fun getFinishedEvent() {
+        _isLoading.value = true
 
         val client = ApiConfig.getApiService().getAllEvents(ACTIVE)
 
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
 
-
+                _isLoading.value = false
+                Log.d(TAG, "aduh selesai")
                 if (response.isSuccessful) {
                     _listFinished.value = response.body()?.listEvents
                 } else {
@@ -40,8 +47,11 @@ class FinishedViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(p0: Call<AllEventResponse>, p1: Throwable) {
-                Log.e(TAG, "aduh onFailure: ${p1.message}")
+            override fun onFailure(p0: Call<AllEventResponse>, error: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = error.message
+
+                Log.e(TAG, "aduh onFailure: ${error.message}")
 
             }
         })

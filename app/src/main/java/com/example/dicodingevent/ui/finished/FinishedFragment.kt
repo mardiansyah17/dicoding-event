@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,10 +30,23 @@ class FinishedFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding.rvFinished.layoutManager = layoutManager
 
+
+
         viewModel.listFinished.observe(viewLifecycleOwner) { finishedEvents ->
             val adapter = FinishedAdapter(finishedEvents)
             binding.rvFinished.adapter = adapter
 
+        }
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBarFinishedEvent.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            AlertDialog.Builder(requireContext())
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
 
         return binding.root

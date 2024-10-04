@@ -1,5 +1,6 @@
 package com.example.dicodingevent.ui.upcoming
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,18 @@ class UpComingFragment : Fragment() {
         viewModel.listUpComing.observe(viewLifecycleOwner) {
             val adapter = UpComingAdapter(it)
             binding.rvUpComing.adapter = adapter
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBarUpComingEvent.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            AlertDialog.Builder(requireContext())
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
 
         return binding.root
