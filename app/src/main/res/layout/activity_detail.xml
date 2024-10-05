@@ -89,17 +89,16 @@
                             android:id="@+id/tv_quota_detail_event"
                     />
                 </LinearLayout>
+                <TextView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/desc_detail_event"
+                        android:textSize="12sp"
+                        android:id="@+id/tv_desc_detail_event"
+                />
             </LinearLayout>
 
-            <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/desc_detail_event"
-                    android:textSize="12sp"
-                    android:id="@+id/tv_desc_detail_event"
-            />
 
         </LinearLayout>
     </ScrollView>

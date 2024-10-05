@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dicodingevent.data.response.ListEventsItem
+import com.example.dicodingevent.ui.finished.FinishedFragmentDirections
 
 class FinishedAdapter(private val listFinishedEvent: List<ListEventsItem>) :
     RecyclerView.Adapter<FinishedAdapter.ViewHolder>() {
@@ -28,6 +30,11 @@ class FinishedAdapter(private val listFinishedEvent: List<ListEventsItem>) :
         Glide.with(holder.itemView.context)
             .load(itemFinished.mediaCover)
             .into(holder.itemImage)
+
+        holder.itemView.setOnClickListener { view ->
+            val action = FinishedFragmentDirections.actionNavigationFinishedToDetailActivity(itemFinished.id)
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

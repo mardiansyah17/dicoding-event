@@ -1,8 +1,10 @@
 package com.example.dicodingevent.ui.detail_event
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
@@ -21,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         binding = ActivityDetailBinding.inflate(layoutInflater)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -31,17 +33,24 @@ class DetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+
+
         viewModel.detailEvent.observe(this) {
             supportActionBar?.title = it.event?.name
-
+            val event = it.event
+            if (event?.link != null) {
+                binding.buttonRegister.setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(event.link)))
+                }
+            }
             binding.tvOwnerDetailEvent.text = "Diselenggarakan oleh ${it.event?.ownerName}"
-            binding.tvTitleDetailEvent.text = it.event?.name
-            binding.tvQuotaDetailEvent.text = "Kuota: ${it.event?.quota}"
-            binding.tvBeginTimeDetailEvent.text = "Dimulai pada: ${it.event?.beginTime}"
+            binding.tvTitleDetailEvent.text = event?.name
+            binding.tvQuotaDetailEvent.text = "Kuota: ${event?.quota}"
+            binding.tvBeginTimeDetailEvent.text = "Dimulai pada: ${event?.beginTime}"
             binding.tvDescDetailEvent.text =
-                HtmlCompat.fromHtml(it.event?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+                HtmlCompat.fromHtml(event?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
             Glide.with(this)
-                .load(it.event?.mediaCover)
+                .load(event?.mediaCover)
                 .into(binding.ivCoverDetailEvent)
         }
 
@@ -54,6 +63,17 @@ class DetailActivity : AppCompatActivity() {
                 binding.progressBarDetailEvent.visibility = View.GONE
                 binding.scrollView2.visibility = View.VISIBLE
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
