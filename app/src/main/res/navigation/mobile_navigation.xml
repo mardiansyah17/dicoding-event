@@ -10,8 +10,7 @@
             android:name="com.example.dicodingevent.ui.upcoming.UpComingFragment"
             android:label="UpComing"
             tools:layout="@layout/fragment_up_coming">
-        <action android:id="@+id/action_navigation_upcoming_to_navigation_finished"
-                app:destination="@id/navigation_finished"/>
+        <action android:id="@+id/action_navigation_upcoming_to_detailActivity" app:destination="@id/detailActivity"/>
     </fragment>
 
 
@@ -19,6 +18,12 @@
             android:id="@+id/navigation_finished"
             android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
             android:label="@string/title_finished"
-            tools:layout="@layout/fragment_finished"/>
+            tools:layout="@layout/fragment_finished">
+        <action android:id="@+id/action_navigation_finished_to_detailActivity" app:destination="@id/detailActivity"/>
+    </fragment>
+    <activity android:id="@+id/detailActivity" android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
+              android:label="activity_detail" tools:layout="@layout/activity_detail">
+        <argument android:name="id_event" app:argType="integer"/>
+    </activity>
 
 </navigation>

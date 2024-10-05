@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dicodingevent.data.response.ListEventsItem
+import com.example.dicodingevent.ui.upcoming.UpComingFragmentDirections
 
 class UpComingAdapter(private val listUpComingEvent: List<ListEventsItem>) :
     RecyclerView.Adapter<UpComingAdapter.ViewHolder>() {
@@ -28,6 +30,11 @@ class UpComingAdapter(private val listUpComingEvent: List<ListEventsItem>) :
         Glide.with(holder.itemView.context)
             .load(itemUpComing.mediaCover)
             .into(holder.itemImage)
+
+        holder.itemView.setOnClickListener { view ->
+            val action = UpComingFragmentDirections.actionNavigationUpcomingToDetailActivity(itemUpComing.id)
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = listUpComingEvent.size
