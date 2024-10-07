@@ -16,10 +16,7 @@ class UpComingFragment : Fragment() {
     private var _binding: FragmentUpComingBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = UpComingFragment()
-    }
-
+ 
     private val viewModel: UpComingViewModel by viewModels()
 
 

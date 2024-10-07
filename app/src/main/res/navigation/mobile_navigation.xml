@@ -15,6 +15,13 @@
 
 
     <fragment
+            android:id="@+id/navigation_search_event"
+            android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
+            android:label="SearchEvent"
+            tools:layout="@layout/fragment_search_event">
+    </fragment>
+
+    <fragment
             android:id="@+id/navigation_finished"
             android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
             android:label="@string/title_finished"
