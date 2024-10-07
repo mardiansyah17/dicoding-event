@@ -39,7 +39,7 @@ class FinishedViewModel : ViewModel() {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
 
                 _isLoading.value = false
-                Log.d(TAG, "aduh selesai")
+             
                 if (response.isSuccessful) {
                     _listFinished.value = response.body()?.listEvents
                 } else {

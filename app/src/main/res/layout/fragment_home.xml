@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment"
+
 >
-    <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.home.HomeFragment"
 
     >
 
         <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                tools:context=".ui.home.HomeFragment"
                 android:orientation="vertical"
         >
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dicoding Event"
+                    android:text="@string/title_dicoding_event"
                     android:textSize="24sp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
@@ -38,33 +35,36 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upcoming Event"
-                    android:textSize="16sp"
+                    android:text="@string/title_upcoming_event"
+                    android:textSize="18sp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:textStyle="bold"
             />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHomeUpcomingEvent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/home_row_upcoming_event"
+                    tools:listitem="@layout/row_event"
             />
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Finished Event"
-                    android:textSize="16sp"
+                    android:text="@string/title_finished_event"
+                    android:textSize="18sp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:textStyle="bold"
             />
 
             <androidx.recyclerview.widget.RecyclerView
+
                     android:id="@+id/rvHomeFinishedEvent"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -74,5 +74,5 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

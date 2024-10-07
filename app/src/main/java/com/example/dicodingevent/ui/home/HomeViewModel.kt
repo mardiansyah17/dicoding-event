@@ -1,9 +1,16 @@
 package com.example.dicodingevent.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dicodingevent.data.response.AllEventResponse
 import com.example.dicodingevent.data.response.ListEventsItem
+import com.example.dicodingevent.data.retrofit.ApiConfig
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
     private val _upComingEvent = MutableLiveData<List<ListEventsItem>>()
@@ -20,5 +27,63 @@ class HomeViewModel : ViewModel() {
 
     companion object {
         private const val TAG = "HomeViewModel"
+    }
+
+    init {
+        getUpComingEvent()
+        getFinishedEvent()
+    }
+
+    private fun getUpComingEvent() {
+        _isLoading.value = true
+
+        val client = ApiConfig.getApiService().getAllEvents(1)
+
+        client.enqueue(object : Callback<AllEventResponse> {
+            override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
+
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _upComingEvent.value = response.body()?.listEvents
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(p0: Call<AllEventResponse>, error: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = error.message
+
+                Log.e(TAG, "onFailure: ${error.message}")
+
+            }
+        })
+    }
+
+    private fun getFinishedEvent() {
+        _isLoading.value = true
+
+        val client = ApiConfig.getApiService().getAllEvents(0)
+
+        client.enqueue(object : Callback<AllEventResponse> {
+            override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
+
+                _isLoading.value = false
+
+                if (response.isSuccessful) {
+                    _finishedEvent.value = response.body()?.listEvents
+                } else {
+                    Log.e(TAG, "aduh onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(p0: Call<AllEventResponse>, error: Throwable) {
+                _isLoading.value = false
+                _errorMessage.value = error.message
+
+                Log.e(TAG, "aduh onFailure: ${error.message}")
+
+            }
+        })
     }
 }

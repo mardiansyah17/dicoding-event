@@ -24,4 +24,7 @@
         eleifend vel venenatis odio. Quisque placerat non nisl.
     </string>
     <string name="content_desc_cover_detail">Gambar cover</string>
+    <string name="title_dicoding_event">Dicoding Event</string>
+    <string name="title_finished_event">Finished Event</string>
+    <string name="title_upcoming_event">Upcoming Event</string>
 </resources>
