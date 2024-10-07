@@ -46,6 +46,7 @@ class DetailActivity : AppCompatActivity() {
             binding.tvOwnerDetailEvent.text = "Diselenggarakan oleh ${it.event?.ownerName}"
             binding.tvTitleDetailEvent.text = event?.name
             binding.tvQuotaDetailEvent.text = "Kuota: ${event?.quota}"
+            binding.tvRegistrantDetailEvent.text = "Terdaftar: ${event?.registrants}"
             binding.tvBeginTimeDetailEvent.text = "Dimulai pada: ${event?.beginTime}"
             binding.tvDescDetailEvent.text =
                 HtmlCompat.fromHtml(event?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
