@@ -27,4 +27,5 @@
     <string name="title_dicoding_event">Dicoding Event</string>
     <string name="title_finished_event">Finished Event</string>
     <string name="title_upcoming_event">Upcoming Event</string>
+    <string name="btn_text_register">Register</string>
 </resources>

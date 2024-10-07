@@ -19,6 +19,11 @@ class DetailEventViewModel : ViewModel() {
     val loading: LiveData<Boolean> = _loading
 
     fun getDetailEvent(id: Int) {
+        if (_detailEvent.value != null) {
+            // Data already loaded, no need to reload
+            return
+        }
+
         _loading.postValue(true)
 
 

@@ -1,5 +1,6 @@
 package com.example.dicodingevent.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +20,6 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +28,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.rvHomeUpcomingEvent.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvHomeFinishedEvent.layoutManager = LinearLayoutManager(context)
+
+
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBarHome.visibility = if (it) View.VISIBLE else View.GONE
+            binding.scrollViewHome.visibility = if (it) View.GONE else View.VISIBLE
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Error")
+                .setMessage(it)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
 
         viewModel.upComingEvent.observe(viewLifecycleOwner) {
             val adapter = EventAdapter(it, object : EventAdapter.OnEventClickListener {

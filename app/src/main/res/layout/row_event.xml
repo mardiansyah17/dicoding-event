@@ -9,7 +9,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_height="230dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent">
 
@@ -19,12 +19,14 @@
 
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 tools:srcCompat="@drawable/cover"
                 android:id="@+id/image_item_event"
+                card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:scaleType="centerCrop"
                 card_view:layout_constraintVertical_bias="0"/>
 
         <TextView

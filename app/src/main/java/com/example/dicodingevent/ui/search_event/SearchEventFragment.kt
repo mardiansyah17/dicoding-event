@@ -58,6 +58,7 @@ class SearchEventFragment : Fragment() {
                 menuInflater.inflate(R.menu.app_bar_menu, menu)
                 val searchItem = menu.findItem(R.id.action_search)
                 val searchView = searchItem?.actionView as SearchView
+                searchItem.expandActionView()
 
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -66,7 +67,9 @@ class SearchEventFragment : Fragment() {
                     }
 
                     override fun onQueryTextChange(newText: String?): Boolean {
-                        // Handle text changes here
+                        if (!newText.isNullOrEmpty()) {
+                            viewModel.findEventByQuery(newText)
+                        }
                         return true
                     }
                 })
