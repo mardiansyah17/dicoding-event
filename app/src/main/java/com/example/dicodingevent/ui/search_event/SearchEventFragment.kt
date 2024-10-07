@@ -9,9 +9,10 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dicodingevent.EventAdapter
 import com.example.dicodingevent.R
-import com.example.dicodingevent.SearchAdapter
 import com.example.dicodingevent.databinding.FragmentSearchEventBinding
 
 class SearchEventFragment : Fragment() {
@@ -26,11 +27,16 @@ class SearchEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchEventBinding.inflate(inflater, container, false)
+        binding.rvSearchEvent.layoutManager = LinearLayoutManager(context)
 
 
         viewModel.listEvent.observe(viewLifecycleOwner) {
-            val adapter = SearchAdapter(it)
-            binding.rvSearchEvent.layoutManager = LinearLayoutManager(context)
+            val adapter = EventAdapter(it, object : EventAdapter.OnEventClickListener {
+                override fun onEventClick(eventId: Int) {
+                    val action = SearchEventFragmentDirections.actionNavigationSearchEventToDetailActivity(eventId)
+                    findNavController().navigate(action)
+                }
+            })
             binding.rvSearchEvent.adapter = adapter
         }
 

@@ -29,6 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_weight="1"
+            tools:listitem="@layout/row_event"
     />
 
 

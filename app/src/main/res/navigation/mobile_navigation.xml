@@ -35,4 +35,9 @@
         <argument android:name="id_event" app:argType="integer"/>
     </activity>
 
+    <fragment android:id="@+id/navigation_home" android:name="com.example.dicodingevent.ui.home.HomeFragment"
+              android:label="fragment_home" tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_homeFragment_to_detailActivity" app:destination="@id/detailActivity"/>
+    </fragment>
+
 </navigation>

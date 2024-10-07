@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dicodingevent.FinishedAdapter
+import com.example.dicodingevent.EventAdapter
 import com.example.dicodingevent.databinding.FragmentFinishedBinding
 
 class FinishedFragment : Fragment() {
@@ -33,7 +34,12 @@ class FinishedFragment : Fragment() {
 
 
         viewModel.listFinished.observe(viewLifecycleOwner) { finishedEvents ->
-            val adapter = FinishedAdapter(finishedEvents)
+            val adapter = EventAdapter(finishedEvents, object : EventAdapter.OnEventClickListener {
+                override fun onEventClick(eventId: Int) {
+                    val action = FinishedFragmentDirections.actionNavigationFinishedToDetailActivity(eventId)
+                    requireView().findNavController().navigate(action)
+                }
+            })
             binding.rvFinished.adapter = adapter
 
         }

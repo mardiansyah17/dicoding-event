@@ -5,11 +5,13 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         card_view:cardElevation="8dp"
         card_view:cardCornerRadius="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="230dp"
+        android:layout_width="300dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_height="230dp"
-        android:layout_width="match_parent">
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 tools:srcCompat="@drawable/cover"
-                android:id="@+id/image_item_event_search"
+                android:id="@+id/image_item_event"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
@@ -29,8 +31,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="DevCoach 171: Machine Learning in Google Cloud | Vertex AI di Google Cloud"
-                android:id="@+id/title_item_event_search"
-                card_view:layout_constraintTop_toBottomOf="@+id/image_item_event_search"
+                android:id="@+id/title_item_event"
+                card_view:layout_constraintTop_toBottomOf="@+id/image_item_event"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 android:gravity="start"
