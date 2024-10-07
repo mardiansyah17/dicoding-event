@@ -17,11 +17,7 @@ class FinishedFragment : Fragment() {
     private var _binding: FragmentFinishedBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = FinishedFragment()
-    }
-
-    private val viewModel: FinishedViewModel by viewModels()
+    private val finishedViewModel: FinishedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +29,7 @@ class FinishedFragment : Fragment() {
 
 
 
-        viewModel.listFinished.observe(viewLifecycleOwner) { finishedEvents ->
+        finishedViewModel.listFinished.observe(viewLifecycleOwner) { finishedEvents ->
             val adapter = EventAdapter(finishedEvents, object : EventAdapter.OnEventClickListener {
                 override fun onEventClick(eventId: Int) {
                     val action = FinishedFragmentDirections.actionNavigationFinishedToDetailActivity(eventId)
@@ -43,11 +39,11 @@ class FinishedFragment : Fragment() {
             binding.rvFinished.adapter = adapter
 
         }
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+        finishedViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBarFinishedEvent.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+        finishedViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             AlertDialog.Builder(requireContext())
                 .setTitle("Error")
                 .setMessage(errorMessage)

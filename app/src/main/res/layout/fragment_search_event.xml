@@ -7,19 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 >
-
-    <ProgressBar
-            android:id="@+id/progressBarSearchEvent"
-            android:indeterminateTint="primary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"/>
-
+    
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchEvent"
             android:layout_width="match_parent"
@@ -30,5 +18,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/row_event"
     />
+
+    <ProgressBar
+            android:id="@+id/progressBarSearchEvent"
+            android:indeterminateTint="?attr/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

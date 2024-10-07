@@ -28,4 +28,8 @@
     <string name="title_finished_event">Finished Event</string>
     <string name="title_upcoming_event">Upcoming Event</string>
     <string name="btn_text_register">Register</string>
+    <string name="ctn_cover">cover</string>
+    <string name="search_hint_text">Search</string>
+    <string name="home_title">Home</string>
+    <string name="search_title">Cari</string>
 </resources>

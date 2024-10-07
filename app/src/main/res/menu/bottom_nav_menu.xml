@@ -4,7 +4,7 @@
     <item
             android:id="@+id/navigation_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home"/>
+            android:title="@string/home_title"/>
 
     <item
             android:id="@+id/navigation_upcoming"
@@ -19,5 +19,5 @@
     <item
             android:id="@+id/navigation_search_event"
             android:icon="@drawable/search_icons"
-            android:title="Cari"/>
+            android:title="@string/search_title"/>
 </menu>
