@@ -19,7 +19,7 @@ class HomeViewModel : ViewModel() {
     private val _finishedEvent = MutableLiveData<List<ListEventsItem>>()
     val finishedEvent: LiveData<List<ListEventsItem>> = _finishedEvent
 
-    private val _isLoading = MutableLiveData<Boolean>(true)
+    private val _isLoading = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String>()

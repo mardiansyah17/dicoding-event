@@ -17,7 +17,7 @@ class DetailActivity : AppCompatActivity() {
     private val viewModel: DetailEventViewModel by viewModels()
     private lateinit var binding: ActivityDetailBinding
 
-    val args: DetailActivityArgs by navArgs()
+    private val args: DetailActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
