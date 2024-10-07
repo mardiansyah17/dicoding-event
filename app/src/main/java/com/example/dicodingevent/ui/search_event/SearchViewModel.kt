@@ -1,4 +1,4 @@
-package com.example.dicodingevent.ui.upcoming
+package com.example.dicodingevent.ui.search_event
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,11 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UpComingViewModel : ViewModel() {
-    private val _listUpComing = MutableLiveData<List<ListEventsItem>>()
-    val listUpComing: LiveData<List<ListEventsItem>> = _listUpComing
+class SearchViewModel : ViewModel() {
+    private val _listEvent = MutableLiveData<List<ListEventsItem>>()
+    val listEvent: LiveData<List<ListEventsItem>> = _listEvent
 
-    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String>()
@@ -23,25 +23,20 @@ class UpComingViewModel : ViewModel() {
 
 
     companion object {
-        private const val TAG = "UpComingViewModel"
-        private const val ACTIVE = 1
+        private const val TAG = "SearchViewModel"
     }
 
-    init {
-        getUpComingEvent()
-    }
 
-    private fun getUpComingEvent() {
+    fun findEventByQuery(query: String?) {
         _isLoading.value = true
 
-        val client = ApiConfig.getApiService().getAllEvents(ACTIVE)
-
+        val client = ApiConfig.getApiService().getAllEvents(-1, query)
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
-              
+                Log.e(TAG, "onFailure: ${response.message()}")
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listUpComing.value = response.body()?.listEvents
+                    _listEvent.value = response.body()?.listEvents
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

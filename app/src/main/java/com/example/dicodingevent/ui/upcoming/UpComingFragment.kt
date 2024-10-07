@@ -16,9 +16,6 @@ class UpComingFragment : Fragment() {
     private var _binding: FragmentUpComingBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = UpComingFragment()
-    }
 
     private val viewModel: UpComingViewModel by viewModels()
 
@@ -28,11 +25,11 @@ class UpComingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUpComingBinding.inflate(inflater, container, false)
-        val layoutManager = LinearLayoutManager(context)
-        binding.rvUpComing.layoutManager = layoutManager
+     
 
         viewModel.listUpComing.observe(viewLifecycleOwner) {
             val adapter = UpComingAdapter(it)
+            binding.rvUpComing.layoutManager = LinearLayoutManager(context)
             binding.rvUpComing.adapter = adapter
         }
 

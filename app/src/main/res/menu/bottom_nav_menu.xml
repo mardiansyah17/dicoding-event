@@ -11,5 +11,8 @@
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="@string/title_finished"/>
 
-
+    <item
+            android:id="@+id/navigation_search_event"
+            android:icon="@drawable/search_icons"
+            android:title="Cari"/>
 </menu>

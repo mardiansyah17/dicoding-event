@@ -11,7 +11,8 @@ interface ApiService {
 
     @GET("events")
     fun getAllEvents(
-        @Query("active") status: Int
+        @Query("active") status: Int,
+        @Query("q") query: String? = null
     ): Call<AllEventResponse>
 
     @GET("events/{id}")
