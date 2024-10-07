@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dicodingevent.data.response.ListEventsItem
+import com.example.dicodingevent.ui.search_event.SearchEventFragmentDirections
 
 class SearchAdapter(private val listEvent: List<ListEventsItem>) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
@@ -31,6 +33,10 @@ class SearchAdapter(private val listEvent: List<ListEventsItem>) :
             .load(listEvent.mediaCover)
             .into(holder.itemImage)
 
+        holder.itemView.setOnClickListener { view ->
+            val action = SearchEventFragmentDirections.actionNavigationSearchEventToDetailActivity(listEvent.id)
+            view.findNavController().navigate(action)
+        }
 
     }
 

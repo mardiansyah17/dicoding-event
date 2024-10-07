@@ -19,6 +19,8 @@
             android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
             android:label="SearchEvent"
             tools:layout="@layout/fragment_search_event">
+        <action android:id="@+id/action_navigation_search_event_to_detailActivity"
+                app:destination="@id/detailActivity"/>
     </fragment>
 
     <fragment

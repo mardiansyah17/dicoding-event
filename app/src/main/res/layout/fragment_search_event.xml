@@ -6,26 +6,19 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.search_event.SearchActivity">
+>
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="Cari event"
-            app:titleTextColor="@android:color/white"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <ProgressBar
+            android:id="@+id/progressBarSearchEvent"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-
-    <!--    <EditText-->
-    <!--            android:id="@+id/searchEventInput"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="60dp"-->
-    <!--            android:hint="Cari event"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"-->
-    <!--    />-->
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchEvent"
@@ -35,6 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,15 +35,15 @@ class UpComingViewModel : ViewModel() {
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().getAllEvents(ACTIVE)
-        Log.e("Tes312", "onFailure: ${client.request().body}")
+
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
-                Log.e("UpComingViewModel", "onFailure: ${response.message()}")
+              
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUpComing.value = response.body()?.listEvents
                 } else {
-                    Log.e("UpComingViewModel", "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
@@ -51,7 +51,7 @@ class UpComingViewModel : ViewModel() {
                 _isLoading.value = false
                 _errorMessage.value = error.message
 
-                Log.e("UpComingViewModel", "onFailure: ${error.message}")
+                Log.e(TAG, "onFailure: ${error.message}")
 
             }
         })
