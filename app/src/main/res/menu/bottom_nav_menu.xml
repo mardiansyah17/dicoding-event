@@ -8,12 +8,12 @@
 
     <item
             android:id="@+id/navigation_upcoming"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/upcoming_icon"
             android:title="@string/title_upcoming"/>
 
     <item
             android:id="@+id/navigation_finished"
-            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:icon="@drawable/finished_icon"
             android:title="@string/title_finished"/>
 
     <item

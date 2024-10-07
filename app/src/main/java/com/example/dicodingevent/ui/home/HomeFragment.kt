@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
         binding.rvHomeUpcomingEvent.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvHomeFinishedEvent.layoutManager = LinearLayoutManager(context)
 
-
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBarHome.visibility = if (it) View.VISIBLE else View.GONE
             binding.scrollViewHome.visibility = if (it) View.GONE else View.VISIBLE
@@ -56,13 +55,14 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.finishedEvent.observe(viewLifecycleOwner) {
+
+
             val adapter = EventAdapter(it, object : EventAdapter.OnEventClickListener {
                 override fun onEventClick(eventId: Int) {
                     val action = HomeFragmentDirections.actionHomeFragmentToDetailActivity(eventId)
                     findNavController().navigate(action)
                 }
             })
-            binding.rvHomeFinishedEvent.isNestedScrollingEnabled = false
             binding.rvHomeFinishedEvent.adapter = adapter
         }
 
