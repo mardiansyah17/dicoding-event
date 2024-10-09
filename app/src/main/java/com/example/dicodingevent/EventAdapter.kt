@@ -52,10 +52,7 @@ class EventAdapter(
         holder.itemView.setOnClickListener {
             listener.onEventClick(itemEvent.id)
         }
-//        holder.itemView.setOnClickListener { view ->
-//            val action = UpComingFragmentDirections.actionNavigationUpcomingToDetailActivity(itemUpComing.id)
-//            view.findNavController().navigate(action)
-//        }
+
     }
 
     override fun getItemCount(): Int = listEvent.size

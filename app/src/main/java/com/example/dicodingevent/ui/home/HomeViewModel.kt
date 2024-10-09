@@ -25,9 +25,6 @@ class HomeViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    companion object {
-        private const val TAG = "HomeViewModel"
-    }
 
     init {
         getUpComingEvent()
@@ -85,5 +82,9 @@ class HomeViewModel : ViewModel() {
 
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "HomeViewModel"
     }
 }

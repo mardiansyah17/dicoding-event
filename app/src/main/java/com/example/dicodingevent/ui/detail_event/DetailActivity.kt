@@ -1,5 +1,6 @@
 package com.example.dicodingevent.ui.detail_event
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
+import com.example.dicodingevent.R
 import com.example.dicodingevent.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -29,13 +31,13 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val id = args.idEvent
-        viewModel.getDetailEvent(id)
+        viewModel.getDetailEvent(1)
 
         setContentView(binding.root)
 
 
 
-        viewModel.detailEvent.observe(this) { it ->
+        viewModel.detailEvent.observe(this) {
             supportActionBar?.title = it.event?.name
             val event = it.event
             if (event?.link != null) {
@@ -43,17 +45,26 @@ class DetailActivity : AppCompatActivity() {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(event.link)))
                 }
             }
-            binding.tvOwnerDetailEvent.text = "Diselenggarakan oleh ${it.event?.ownerName}"
-            binding.tvTitleDetailEvent.text = event?.name
             val registrants = event?.registrants
             val quota = event?.quota
-            binding.tvQuotaDetailEvent.text = "Sisa kuota: ${quota?.minus(registrants!!)}"
-            binding.tvBeginTimeDetailEvent.text = "Dimulai pada: ${event?.beginTime}"
+            binding.tvOwnerDetailEvent.text = getString(R.string.event_owner, it.event?.ownerName)
+            binding.tvQuotaDetailEvent.text = getString(R.string.quota_remaining, quota?.minus(registrants!!))
+            binding.tvBeginTimeDetailEvent.text = getString(R.string.begin_time, event?.beginTime)
+
+            binding.tvTitleDetailEvent.text = event?.name
             binding.tvDescDetailEvent.text =
                 HtmlCompat.fromHtml(event?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
             Glide.with(this)
                 .load(event?.mediaCover)
                 .into(binding.ivCoverDetailEvent)
+        }
+
+        viewModel.error.observe(this) {
+            AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(it)
+                .setPositiveButton("OK") { _, _ -> finish() }
+                .show()
         }
 
 

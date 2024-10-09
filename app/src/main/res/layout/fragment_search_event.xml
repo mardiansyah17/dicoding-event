@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 >
-    
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchEvent"
             android:layout_width="match_parent"
@@ -17,7 +17,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/row_event"
+            android:visibility="gone"
     />
+
+    <LinearLayout
+            android:id="@+id/emptyEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone">
+        <pl.droidsonroids.gif.GifImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@drawable/empty_event"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="Event tidak di temukan"
+                  android:textSize="18sp"
+                  android:layout_gravity="center"
+        />
+    </LinearLayout>
+
 
     <ProgressBar
             android:id="@+id/progressBarSearchEvent"
@@ -28,6 +53,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"/>
+            tools:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

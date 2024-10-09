@@ -22,11 +22,6 @@ class UpComingViewModel : ViewModel() {
     val errorMessage: LiveData<String> = _errorMessage
 
 
-    companion object {
-        private const val TAG = "UpComingViewModel"
-        private const val ACTIVE = 1
-    }
-
     init {
         getUpComingEvent()
     }
@@ -38,7 +33,7 @@ class UpComingViewModel : ViewModel() {
 
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
-              
+
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUpComing.value = response.body()?.listEvents
@@ -55,5 +50,10 @@ class UpComingViewModel : ViewModel() {
 
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "UpComingViewModel"
+        private const val ACTIVE = 1
     }
 }

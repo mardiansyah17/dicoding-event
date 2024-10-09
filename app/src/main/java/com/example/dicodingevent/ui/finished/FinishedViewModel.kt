@@ -20,10 +20,6 @@ class FinishedViewModel : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
     val errorMessage: LiveData<String> = _errorMessage
 
-    companion object {
-        private const val TAG = "FinishedViewModel"
-        private const val ACTIVE = 0
-    }
 
     init {
         getFinishedEvent()
@@ -39,7 +35,7 @@ class FinishedViewModel : ViewModel() {
             override fun onResponse(call: Call<AllEventResponse>, response: Response<AllEventResponse>) {
 
                 _isLoading.value = false
-             
+
                 if (response.isSuccessful) {
                     _listFinished.value = response.body()?.listEvents
                 } else {
@@ -55,5 +51,10 @@ class FinishedViewModel : ViewModel() {
 
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "FinishedViewModel"
+        private const val ACTIVE = 0
     }
 }

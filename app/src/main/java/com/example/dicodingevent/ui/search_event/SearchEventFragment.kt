@@ -31,7 +31,16 @@ class SearchEventFragment : Fragment() {
 
 
         viewModel.listEvent.observe(viewLifecycleOwner) {
-            val adapter = EventAdapter(it, object : EventAdapter.OnEventClickListener {
+            val eventList = it
+            if (eventList.isEmpty()) {
+                binding.emptyEvent.visibility = View.VISIBLE
+                binding.rvSearchEvent.visibility = View.GONE
+            } else {
+                binding.emptyEvent.visibility = View.GONE
+                binding.rvSearchEvent.visibility = View.VISIBLE
+
+            }
+            val adapter = EventAdapter(eventList, object : EventAdapter.OnEventClickListener {
                 override fun onEventClick(eventId: Int) {
                     val action = SearchEventFragmentDirections.actionNavigationSearchEventToDetailActivity(eventId)
                     findNavController().navigate(action)
@@ -58,7 +67,7 @@ class SearchEventFragment : Fragment() {
                 menuInflater.inflate(R.menu.app_bar_menu, menu)
                 val searchItem = menu.findItem(R.id.action_search)
                 val searchView = searchItem?.actionView as SearchView
-                searchItem.expandActionView()
+
 
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {

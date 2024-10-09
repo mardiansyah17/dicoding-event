@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(action)
                 }
 
-            }, 300)
+            }, UPCOMING_EVENT_ITEM_WIDTH)
 
             binding.rvHomeUpcomingEvent.adapter = adapter
         }
@@ -68,4 +68,9 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+    companion object {
+        private const val UPCOMING_EVENT_ITEM_WIDTH = 300
+    }
+
 }

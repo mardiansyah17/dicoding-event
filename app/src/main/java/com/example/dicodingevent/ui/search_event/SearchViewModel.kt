@@ -22,11 +22,6 @@ class SearchViewModel : ViewModel() {
     val errorMessage: LiveData<String> = _errorMessage
 
 
-    companion object {
-        private const val TAG = "SearchViewModel"
-    }
-
-
     fun findEventByQuery(query: String?) {
         _isLoading.value = true
 
@@ -51,4 +46,9 @@ class SearchViewModel : ViewModel() {
             }
         })
     }
+
+    companion object {
+        private const val TAG = "SearchViewModel"
+    }
+
 }
