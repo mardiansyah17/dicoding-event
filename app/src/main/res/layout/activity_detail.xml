@@ -70,30 +70,15 @@
                             android:id="@+id/tv_begin_time_detail_event"
                     />
 
-                    <LinearLayout
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                    >
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="Kuota : 1000"
-                                android:textSize="12sp"
-                                android:textAlignment="textEnd"
+                            tools:text="Kuota : 1000"
+                            android:textSize="12sp"
+                            android:textAlignment="textEnd"
 
-                                android:id="@+id/tv_quota_detail_event"
-                        />
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="Pendaftar : 1000"
-                                android:textSize="12sp"
-                                android:textAlignment="textEnd"
-                                android:id="@+id/tv_registrant_detail_event"
-                        />
-                    </LinearLayout>
+                            android:id="@+id/tv_quota_detail_event"
+                    />
                 </LinearLayout>
                 <TextView
 

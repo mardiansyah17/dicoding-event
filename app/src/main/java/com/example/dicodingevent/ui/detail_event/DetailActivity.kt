@@ -35,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
 
 
 
-        viewModel.detailEvent.observe(this) {
+        viewModel.detailEvent.observe(this) { it ->
             supportActionBar?.title = it.event?.name
             val event = it.event
             if (event?.link != null) {
@@ -45,8 +45,9 @@ class DetailActivity : AppCompatActivity() {
             }
             binding.tvOwnerDetailEvent.text = "Diselenggarakan oleh ${it.event?.ownerName}"
             binding.tvTitleDetailEvent.text = event?.name
-            binding.tvQuotaDetailEvent.text = "Kuota: ${event?.quota}"
-            binding.tvRegistrantDetailEvent.text = "Terdaftar: ${event?.registrants}"
+            val registrants = event?.registrants
+            val quota = event?.quota
+            binding.tvQuotaDetailEvent.text = "Sisa kuota: ${quota?.minus(registrants!!)}"
             binding.tvBeginTimeDetailEvent.text = "Dimulai pada: ${event?.beginTime}"
             binding.tvDescDetailEvent.text =
                 HtmlCompat.fromHtml(event?.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
