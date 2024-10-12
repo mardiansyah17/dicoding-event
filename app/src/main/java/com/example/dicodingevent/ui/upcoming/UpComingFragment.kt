@@ -20,7 +20,7 @@ class UpComingFragment : Fragment() {
 
     private val viewModel: UpComingViewModel by viewModels()
 
-
+   
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs")
+
+    id("com.google.devtools.ksp") version "2.0.20-1.0.24"
+    id("kotlin-parcelize")
 }
 
 android {
@@ -60,4 +63,7 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     implementation(libs.android.gif.drawable)
+
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.room.compiler)
 }
