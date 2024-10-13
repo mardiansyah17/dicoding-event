@@ -31,7 +31,7 @@ class SearchViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${response.message()}")
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listEvent.value = response.body()?.listEvents
+//                    _listEvent.value = response.body()?.listEvents
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

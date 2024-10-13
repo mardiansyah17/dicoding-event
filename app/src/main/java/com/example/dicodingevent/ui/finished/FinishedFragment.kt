@@ -24,32 +24,8 @@ class FinishedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFinishedBinding.inflate(inflater, container, false)
-        val layoutManager = LinearLayoutManager(context)
-        binding.rvFinished.layoutManager = layoutManager
+        
 
-
-
-        finishedViewModel.listFinished.observe(viewLifecycleOwner) { finishedEvents ->
-            val adapter = EventAdapter(finishedEvents, object : EventAdapter.OnEventClickListener {
-                override fun onEventClick(eventId: Int) {
-                    val action = FinishedFragmentDirections.actionNavigationFinishedToDetailActivity(eventId)
-                    requireView().findNavController().navigate(action)
-                }
-            })
-            binding.rvFinished.adapter = adapter
-
-        }
-        finishedViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBarFinishedEvent.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
-
-        finishedViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            AlertDialog.Builder(requireContext())
-                .setTitle("Error")
-                .setMessage(errorMessage)
-                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                .show()
-        }
 
         return binding.root
     }

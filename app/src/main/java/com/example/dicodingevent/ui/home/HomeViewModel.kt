@@ -41,7 +41,7 @@ class HomeViewModel : ViewModel() {
 
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _upComingEvent.value = response.body()?.listEvents?.take(5)
+//                    _upComingEvent.value = response.body()?.listEvents?.take(5)
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -68,7 +68,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = false
 
                 if (response.isSuccessful) {
-                    _finishedEvent.value = response.body()?.listEvents?.take(5)
+//                    _finishedEvent.value = response.body()?.listEvents?.take(5)
                 } else {
                     Log.e(TAG, "aduh onFailure: ${response.message()}")
                 }
