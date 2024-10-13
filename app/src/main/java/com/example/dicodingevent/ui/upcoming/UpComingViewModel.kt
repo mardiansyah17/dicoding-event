@@ -36,7 +36,7 @@ class UpComingViewModel : ViewModel() {
 
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listUpComing.value = response.body()?.listEvents
+//                    _listUpComing.value = response.body()?.listEvents
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

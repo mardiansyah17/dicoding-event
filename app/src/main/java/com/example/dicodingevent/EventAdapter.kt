@@ -9,11 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.dicodingevent.data.remote.response.ListEventsItem
+import com.example.dicodingevent.data.local.entity.EventEntity
 
 class EventAdapter(
-    private val listEvent: List<ListEventsItem>,
+    private val listEvent: List<EventEntity>,
     private val listener: OnEventClickListener,
     private val width: Int? = null
 ) :
@@ -46,12 +45,12 @@ class EventAdapter(
         val itemEvent = listEvent[position]
         Log.d("EventAdapter", "onBindViewHolder: $itemEvent")
         holder.itemText.text = itemEvent.name
-        Glide.with(holder.itemView.context)
-            .load(itemEvent.mediaCover)
-            .into(holder.itemImage)
-        holder.itemView.setOnClickListener {
-            listener.onEventClick(itemEvent.id)
-        }
+//        Glide.with(holder.itemView.context)
+//            .load(itemEvent.mediaCover)
+//            .into(holder.itemImage)
+//        holder.itemView.setOnClickListener {
+//            listener.onEventClick(itemEvent.id)
+//        }
 
     }
 

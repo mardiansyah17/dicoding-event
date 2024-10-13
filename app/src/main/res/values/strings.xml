@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">DicodingEvent</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_finished">Finished</string>
     <string name="title_upcoming">Upcoming</string>
     <string name="title_event_detail">[Offline Event] Baparekraf Developer Day 2024</string>
@@ -42,11 +39,11 @@
     <string name="title_upcoming_event">Upcoming Event</string>
     <string name="btn_text_register">Register</string>
     <string name="ctn_cover">cover</string>
-    <string name="search_hint_text">Search</string>
     <string name="home_title">Home</string>
     <string name="search_title">Cari</string>
 
     <string name="event_owner">Diselenggarakan oleh %1$s</string>
     <string name="quota_remaining">Sisa kuota: %1$d</string>
     <string name="begin_time">Dimulai pada: %1$s</string>
+    <string name="event_not_found">Event tidak di temukan</string>
 </resources>

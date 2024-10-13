@@ -37,7 +37,7 @@ class FinishedViewModel : ViewModel() {
                 _isLoading.value = false
 
                 if (response.isSuccessful) {
-                    _listFinished.value = response.body()?.listEvents
+//                    _listFinished.value = response.body()?.listEvents
                 } else {
                     Log.e(TAG, "aduh onFailure: ${response.message()}")
                 }

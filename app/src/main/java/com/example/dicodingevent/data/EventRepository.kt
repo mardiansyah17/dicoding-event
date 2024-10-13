@@ -23,12 +23,32 @@ class EventRepository private constructor(
 
         val client = apiService.getAllEvents(status = 0)
         client.enqueue(object : Callback<AllEventResponse> {
-            override fun onResponse(p0: Call<AllEventResponse>, p1: Response<AllEventResponse>) {
-                TODO("Not yet implemented")
+            override fun onResponse(call: Call<AllEventResponse>, res: Response<AllEventResponse>) {
+                if (res.isSuccessful) {
+                    val events = res.body()?.listEvents
+                    val eventList = ArrayList<EventEntity>()
+
+                    appExecutors.diskIO.execute {
+                        events?.forEach { eventData ->
+                            val event = EventEntity(
+                                eventData.id,
+                                eventData.name,
+                                eventData.mediaCover,
+                                eventData.description,
+                                eventData.ownerName
+                            )
+
+                            eventList.add(event)
+
+                        }
+                        eventDao.insertEvents(eventList)
+
+                    }
+                }
             }
 
             override fun onFailure(p0: Call<AllEventResponse>, p1: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
         })
