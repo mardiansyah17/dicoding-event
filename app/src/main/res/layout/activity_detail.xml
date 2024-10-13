@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail_event.DetailActivity">
@@ -26,11 +27,14 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_cover_detail_event"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     android:contentDescription="@string/content_desc_cover_detail"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/cover" />
+                    tools:src="@drawable/cover"
+
+                    />
             </FrameLayout>
 
             <LinearLayout
@@ -40,6 +44,7 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/tv_title_detail_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -48,6 +53,7 @@
                     tools:text="@string/title_event_detail" />
 
                 <TextView
+                    android:id="@+id/tv_owner_detail_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -62,13 +68,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/tv_begin_time_detail_event"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="12sp"
                         tools:text="Terbuka hingga : 31 Desember 2024" />
 
                     <TextView
+                        android:id="@+id/tv_quota_detail_event"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
@@ -79,6 +87,7 @@
 
                 <TextView
 
+                    android:id="@+id/tv_desc_detail_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -87,6 +96,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/button_register"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
