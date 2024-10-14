@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingevent.EventAdapter
 import com.example.dicodingevent.data.Result
@@ -19,7 +21,11 @@ class UpComingFragment : Fragment() {
     private var _binding: FragmentUpComingBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentUpComingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,7 +39,7 @@ class UpComingFragment : Fragment() {
         }
         val layoutManager = LinearLayoutManager(context)
 
-        viewModel.getAllEvent().observe(viewLifecycleOwner) { result ->
+        viewModel.getAllEvent(STATUS_EVENT).observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
@@ -44,22 +50,44 @@ class UpComingFragment : Fragment() {
                         binding.progressBarUpComingEvent.visibility = View.GONE
                         val eventData = result.data
                         Log.d("UpComingFragment", "eventData: $eventData")
-                        val eventAdapter = EventAdapter(eventData, object : EventAdapter.OnEventClickListener {
-                            override fun onEventClick(eventId: Int) {
-                                // Do something
-                            }
-                        })
+                        val eventAdapter =
+                            EventAdapter(eventData, object : EventAdapter.OnEventClickListener {
+                                override fun onEventClick(eventId: Int) {
+                                    val action =
+                                        UpComingFragmentDirections.actionNavigationUpcomingToDetailActivity(
+                                            eventId
+                                        )
+                                    view.findNavController().navigate(action)
+                                }
+                            })
                         binding.rvUpComing.layoutManager = layoutManager
                         binding.rvUpComing.adapter = eventAdapter
 
                     }
 
-                    is Result.Error -> TODO()
+                    is Result.Error -> {
+                        AlertDialog.Builder(requireActivity())
+                            .setTitle("Error")
+                            .setMessage(result.error)
+                            .setPositiveButton("OK") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
                 }
             }
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object {
+        private const val STATUS_EVENT = 1
     }
 
 

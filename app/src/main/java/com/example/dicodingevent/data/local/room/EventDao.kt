@@ -10,10 +10,17 @@ import com.example.dicodingevent.data.local.entity.EventEntity
 @Dao
 interface EventDao {
 
-    @Query("SELECT * FROM events")
-    fun getAllEvents(): LiveData<List<EventEntity>>
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertEvents(events: List<EventEntity>)
+    fun insertFavoriteEvent(events: EventEntity)
+
+    @Query("SELECT  EXISTS(SELECT * FROM favorite_events WHERE id = :id)")
+    fun getFavoriteEventById(id: Int): LiveData<Boolean>
+
+    @Query("DELETE FROM favorite_events where id = :id")
+    fun deleteFavoriteEventById(id: Int)
+
+    @Query("SELECT * FROM favorite_events")
+    fun getFavoriteEvents(): List<EventEntity>
+
 
 }

@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.dicodingevent.data.local.entity.EventEntity
 import com.example.dicodingevent.data.local.room.EventDao
+import com.example.dicodingevent.data.model.EventItem
 import com.example.dicodingevent.data.remote.response.AllEventResponse
+import com.example.dicodingevent.data.remote.response.DetailEventResponse
 import com.example.dicodingevent.data.remote.retrofit.ApiService
 import com.example.dicodingevent.utils.AppExecutors
 import retrofit2.Call
@@ -16,49 +18,90 @@ class EventRepository private constructor(
     private val eventDao: EventDao,
     private val appExecutors: AppExecutors,
 ) {
-    private val result = MediatorLiveData<Result<List<EventEntity>>>()
+    private val allEventResult = MediatorLiveData<Result<List<EventItem>>>()
+    private val eventDetailResult = MediatorLiveData<Result<EventItem>>()
 
-    fun getAllEvent(): LiveData<Result<List<EventEntity>>> {
-        result.value = Result.Loading
+    fun getAllEvent(status: Int): LiveData<Result<List<EventItem>>> {
+        allEventResult.value = Result.Loading
 
-        val client = apiService.getAllEvents(status = 0)
+        val client = apiService.getAllEvents(status = status)
         client.enqueue(object : Callback<AllEventResponse> {
             override fun onResponse(call: Call<AllEventResponse>, res: Response<AllEventResponse>) {
                 if (res.isSuccessful) {
-                    val events = res.body()?.listEvents
-                    val eventList = ArrayList<EventEntity>()
-
-                    appExecutors.diskIO.execute {
-                        events?.forEach { eventData ->
-                            val event = EventEntity(
-                                eventData.id,
-                                eventData.name,
-                                eventData.mediaCover,
-                                eventData.description,
-                                eventData.ownerName
-                            )
-
-                            eventList.add(event)
-
-                        }
-                        eventDao.insertEvents(eventList)
-
-                    }
+                    val events = res.body()?.listEvents?.map {
+                        EventItem(
+                            id = it.id,
+                            name = it.name,
+                            mediaCover = it.mediaCover
+                        )
+                    } ?: emptyList()
+                    allEventResult.postValue(Result.Success(events))
+                } else {
+                    allEventResult.postValue(Result.Error("Failed to get data: ${res.message()}"))
                 }
             }
 
-            override fun onFailure(p0: Call<AllEventResponse>, p1: Throwable) {
-
+            override fun onFailure(call: Call<AllEventResponse>, t: Throwable) {
+                allEventResult.postValue(Result.Error("Failed to get data: ${t.message}"))
             }
-
         })
 
-        val localData = eventDao.getAllEvents()
-        result.addSource(localData) { data: List<EventEntity> ->
-            result.value = Result.Success(data)
-        }
+        return allEventResult
+    }
 
-        return result
+    fun getDetailEvent(id: Int): LiveData<Result<EventItem>> {
+        eventDetailResult.value = Result.Loading
+
+        val client = apiService.getDetailEvent(id)
+        client.enqueue(object : Callback<DetailEventResponse> {
+            override fun onResponse(
+                call: Call<DetailEventResponse>,
+                response: Response<DetailEventResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val eventDetail = response.body()?.event
+                    if (eventDetail != null) {
+                        val event = EventItem(
+                            id = eventDetail.id,
+                            name = eventDetail.name,
+                            mediaCover = eventDetail.mediaCover,
+                            registrants = eventDetail.registrants,
+                            link = eventDetail.link,
+                            description = eventDetail.description,
+                            ownerName = eventDetail.ownerName,
+                            quote = eventDetail.quota
+                        )
+                        eventDetailResult.postValue(Result.Success(event))
+                    } else {
+                        eventDetailResult.postValue(Result.Error("Event detail is null"))
+                    }
+                } else {
+                    eventDetailResult.postValue(Result.Error("Failed to get data: ${response.message()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<DetailEventResponse>, t: Throwable) {
+                eventDetailResult.postValue(Result.Error("Failed to get data: ${t.message}"))
+            }
+        })
+
+        return eventDetailResult
+    }
+
+    fun addFavoriteEvent(event: EventItem) {
+        appExecutors.diskIO.execute {
+            eventDao.insertFavoriteEvent(EventEntity(event.id, event.name, event.mediaCover))
+        }
+    }
+
+    fun getFavoriteEventById(id: Int): LiveData<Boolean> {
+        return eventDao.getFavoriteEventById(id)
+    }
+
+    fun deleteFavoriteEventById(id: Int) {
+        appExecutors.diskIO.execute {
+            eventDao.deleteFavoriteEventById(id)
+        }
     }
 
     companion object {
@@ -72,5 +115,4 @@ class EventRepository private constructor(
             instance ?: EventRepository(apiService, eventDao, appExecutors)
         }.also { instance = it }
     }
-
 }

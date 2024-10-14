@@ -7,93 +7,107 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail_event.DetailActivity">
 
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-            >
-
-            <FrameLayout
+            <ImageView
+                android:id="@+id/iv_cover_detail_event"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="240dp"
+                android:contentDescription="@string/content_desc_cover_detail"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/cover" />
 
-                <ImageView
-                    android:id="@+id/iv_cover_detail_event"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:contentDescription="@string/content_desc_cover_detail"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/cover"
+            <TextView
+                android:id="@+id/tv_title_detail_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="?android:attr/colorPrimary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_cover_detail_event"
+                tools:text="@string/title_event_detail" />
 
-                    />
-            </FrameLayout>
+            <TextView
+                android:id="@+id/tv_owner_detail_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_event"
+                tools:text="@string/owner_name_detail_event" />
+
 
             <LinearLayout
+
+                android:id="@+id/ll_time_quota_detail_event"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_owner_detail_event">
 
                 <TextView
-                    android:id="@+id/tv_title_detail_event"
+                    android:id="@+id/tv_begin_time_detail_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="?android:attr/colorPrimary"
-                    android:textSize="18sp"
-                    tools:text="@string/title_event_detail" />
-
-                <TextView
-                    android:id="@+id/tv_owner_detail_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
                     android:textSize="12sp"
-
-                    tools:text="@string/owner_name_detail_event" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_begin_time_detail_event"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="12sp"
-                        tools:text="Terbuka hingga : 31 Desember 2024" />
-
-                    <TextView
-                        android:id="@+id/tv_quota_detail_event"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        android:textSize="12sp"
-
-                        tools:text="Kuota : 1000" />
-                </LinearLayout>
+                    tools:text="Terbuka hingga : 31 Desember 2024" />
 
                 <TextView
-
-                    android:id="@+id/tv_desc_detail_event"
+                    android:id="@+id/tv_quota_detail_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:textAlignment="textEnd"
                     android:textSize="12sp"
-                    tools:text="@string/desc_detail_event" />
+                    tools:text="Kuota : 1000" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_desc_detail_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_time_quota_detail_event"
+                tools:text="@string/desc_detail_event" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAddFavotite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="96dp"
+                android:backgroundTint="?attr/colorPrimary"
+                android:contentDescription="tess"
+                android:src="@drawable/baseline_favorite_border_24"
+                app:layout_constraintBottom_toTopOf="@+id/tv_desc_detail_event"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
 
             <Button
                 android:id="@+id/button_register"
@@ -102,8 +116,11 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:text="@string/btn_text_register" />
-        </LinearLayout>
+                android:text="@string/btn_text_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc_detail_event" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <ProgressBar
@@ -116,4 +133,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

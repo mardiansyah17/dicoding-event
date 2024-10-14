@@ -10,6 +10,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFinishedEvent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -20,6 +21,7 @@
         tools:listitem="@layout/row_event" />
 
     <ProgressBar
+        android:id="@+id/progressBarFinishedEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="?attr/colorPrimary"
