@@ -1,7 +1,6 @@
 package com.example.dicodingevent.ui.upcoming
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +48,6 @@ class UpComingFragment : Fragment() {
                     is Result.Success -> {
                         binding.progressBarUpComingEvent.visibility = View.GONE
                         val eventData = result.data
-                        Log.d("UpComingFragment", "eventData: $eventData")
                         val eventAdapter =
                             EventAdapter(eventData, object : EventAdapter.OnEventClickListener {
                                 override fun onEventClick(eventId: Int) {

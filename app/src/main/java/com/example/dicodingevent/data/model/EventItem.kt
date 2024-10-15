@@ -10,7 +10,7 @@ data class EventItem(
     val mediaCover: String,
     val registrants: Int? = null,
     val date: String? = null,
-    val quote: Int? = null,
+    val quota: Int? = null,
     val link: String? = null,
     val description: String? = null,
     val ownerName: String? = null,

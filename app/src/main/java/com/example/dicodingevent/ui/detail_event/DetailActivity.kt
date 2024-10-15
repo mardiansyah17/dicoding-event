@@ -86,11 +86,11 @@ class DetailActivity : AppCompatActivity() {
                         binding.tvTitleDetailEvent.text = event.name
                         binding.tvQuotaDetailEvent.text = getString(
                             R.string.quota_remaining,
-                            event.quote!!.minus(event.registrants!!)
+                            event.quota!!.minus(event.registrants!!)
                         )
 
                         binding.tvBeginTimeDetailEvent.text =
-                            getString(R.string.begin_time, "10:00")
+                            getString(R.string.begin_time, event.date)
 
                         binding.tvDescDetailEvent.text =
                             HtmlCompat.fromHtml(

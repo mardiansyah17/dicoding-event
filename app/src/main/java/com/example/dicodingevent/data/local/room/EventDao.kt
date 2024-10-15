@@ -14,7 +14,7 @@ interface EventDao {
     suspend fun insertFavoriteEvent(events: EventEntity)
 
     @Query("SELECT  EXISTS(SELECT * FROM favorite_events WHERE id = :id)")
-    suspend fun getFavoriteEventById(id: Int): LiveData<Boolean>
+    fun getFavoriteEventById(id: Int): LiveData<Boolean>
 
     @Query("DELETE FROM favorite_events where id = :id")
     suspend fun deleteFavoriteEventById(id: Int)
