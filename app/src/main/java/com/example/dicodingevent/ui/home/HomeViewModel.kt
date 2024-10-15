@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dicodingevent.data.response.AllEventResponse
-import com.example.dicodingevent.data.response.ListEventsItem
-import com.example.dicodingevent.data.retrofit.ApiConfig
+import com.example.dicodingevent.data.remote.response.AllEventResponse
+import com.example.dicodingevent.data.remote.response.ListEventsItem
+import com.example.dicodingevent.data.remote.retrofit.ApiConfig
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,7 +41,7 @@ class HomeViewModel : ViewModel() {
 
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _upComingEvent.value = response.body()?.listEvents?.take(5)
+//                    _upComingEvent.value = response.body()?.listEvents?.take(5)
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -68,7 +68,7 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = false
 
                 if (response.isSuccessful) {
-                    _finishedEvent.value = response.body()?.listEvents?.take(5)
+//                    _finishedEvent.value = response.body()?.listEvents?.take(5)
                 } else {
                     Log.e(TAG, "aduh onFailure: ${response.message()}")
                 }

@@ -10,10 +10,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.dicodingevent.data.response.ListEventsItem
+import com.example.dicodingevent.data.model.EventItem
 
 class EventAdapter(
-    private val listEvent: List<ListEventsItem>,
+    private val listEvent: List<EventItem>,
     private val listener: OnEventClickListener,
     private val width: Int? = null
 ) :
@@ -31,7 +31,8 @@ class EventAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.row_event, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.row_event, parent, false)
         return ViewHolder(view)
     }
 

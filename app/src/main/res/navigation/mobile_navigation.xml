@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/mobile_navigation"
-            app:startDestination="@+id/navigation_search_event">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/navigation_upcoming">
 
     <fragment
-            android:id="@+id/navigation_upcoming"
-            android:name="com.example.dicodingevent.ui.upcoming.UpComingFragment"
-            android:label="UpComing"
-            tools:layout="@layout/fragment_up_coming">
-        <action android:id="@+id/action_navigation_upcoming_to_detailActivity" app:destination="@id/detailActivity"/>
+        android:id="@+id/navigation_upcoming"
+        android:name="com.example.dicodingevent.ui.upcoming.UpComingFragment"
+        android:label="UpComing"
+        tools:layout="@layout/fragment_up_coming">
+        <action
+            android:id="@+id/action_navigation_upcoming_to_detailActivity"
+            app:destination="@id/detailActivity" />
     </fragment>
 
 
     <fragment
-            android:id="@+id/navigation_search_event"
-            android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
-            android:label="SearchEvent"
-            tools:layout="@layout/fragment_search_event">
-        <action android:id="@+id/action_navigation_search_event_to_detailActivity"
-                app:destination="@id/detailActivity"/>
+        android:id="@+id/navigation_search_event"
+        android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
+        android:label="SearchEvent"
+        tools:layout="@layout/fragment_search_event">
+        <action
+            android:id="@+id/action_navigation_search_event_to_detailActivity"
+            app:destination="@id/detailActivity" />
     </fragment>
 
     <fragment
-            android:id="@+id/navigation_finished"
-            android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
-            android:label="@string/title_finished"
-            tools:layout="@layout/fragment_finished">
-        <action android:id="@+id/action_navigation_finished_to_detailActivity" app:destination="@id/detailActivity"/>
+        android:id="@+id/navigation_finished"
+        android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
+        android:label="@string/title_finished"
+        tools:layout="@layout/fragment_finished">
+        <action
+            android:id="@+id/action_navigation_finished_to_detailActivity"
+            app:destination="@id/detailActivity" />
     </fragment>
-    <activity android:id="@+id/detailActivity" android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
-              android:label="activity_detail" tools:layout="@layout/activity_detail">
-        <argument android:name="id_event" app:argType="integer"/>
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
+        android:label="activity_detail"
+        tools:layout="@layout/activity_detail">
+        <argument
+            android:name="id_event"
+            app:argType="integer" />
     </activity>
 
-    <fragment android:id="@+id/navigation_home" android:name="com.example.dicodingevent.ui.home.HomeFragment"
-              android:label="Home" tools:layout="@layout/fragment_home">
-        <action android:id="@+id/action_homeFragment_to_detailActivity" app:destination="@id/detailActivity"/>
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.dicodingevent.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
     </fragment>
 
 </navigation>

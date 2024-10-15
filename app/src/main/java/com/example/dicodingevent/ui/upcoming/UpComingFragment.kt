@@ -1,64 +1,94 @@
 package com.example.dicodingevent.ui.upcoming
 
-import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingevent.EventAdapter
+import com.example.dicodingevent.data.Result
 import com.example.dicodingevent.databinding.FragmentUpComingBinding
+import com.example.dicodingevent.ui.EventViewModel
+import com.example.dicodingevent.ui.ViewModelFactory
 
 class UpComingFragment : Fragment() {
 
     private var _binding: FragmentUpComingBinding? = null
     private val binding get() = _binding!!
 
-
-    private val viewModel: UpComingViewModel by viewModels()
-
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUpComingBinding.inflate(inflater, container, false)
-        binding.rvUpComing.layoutManager = LinearLayoutManager(context)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel.listUpComing.observe(viewLifecycleOwner) {
-            val adapter = EventAdapter(
-                it, object : EventAdapter.OnEventClickListener {
-                    override fun onEventClick(eventId: Int) {
-                        val action = UpComingFragmentDirections.actionNavigationUpcomingToDetailActivity(eventId)
-                        findNavController().navigate(action)
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
+        val viewModel: EventViewModel by viewModels {
+            factory
+        }
+        val layoutManager = LinearLayoutManager(context)
+
+        viewModel.getAllEvent(STATUS_EVENT).observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBarUpComingEvent.visibility = View.VISIBLE
                     }
 
+                    is Result.Success -> {
+                        binding.progressBarUpComingEvent.visibility = View.GONE
+                        val eventData = result.data
+                        Log.d("UpComingFragment", "eventData: $eventData")
+                        val eventAdapter =
+                            EventAdapter(eventData, object : EventAdapter.OnEventClickListener {
+                                override fun onEventClick(eventId: Int) {
+                                    val action =
+                                        UpComingFragmentDirections.actionNavigationUpcomingToDetailActivity(
+                                            eventId
+                                        )
+                                    view.findNavController().navigate(action)
+                                }
+                            })
+                        binding.rvUpComing.layoutManager = layoutManager
+                        binding.rvUpComing.adapter = eventAdapter
+
+                    }
+
+                    is Result.Error -> {
+                        AlertDialog.Builder(requireActivity())
+                            .setTitle("Error")
+                            .setMessage(result.error)
+                            .setPositiveButton("OK") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
                 }
-            )
-            binding.rvUpComing.adapter = adapter
+            }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBarUpComingEvent.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            AlertDialog.Builder(requireContext())
-                .setTitle("Error")
-                .setMessage(errorMessage)
-                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                .show()
-        }
-
-        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    companion object {
+        private const val STATUS_EVENT = 1
+    }
+
+
 }
