@@ -11,16 +11,16 @@ import com.example.dicodingevent.data.local.entity.EventEntity
 interface EventDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertFavoriteEvent(events: EventEntity)
+    suspend fun insertFavoriteEvent(events: EventEntity)
 
     @Query("SELECT  EXISTS(SELECT * FROM favorite_events WHERE id = :id)")
-    fun getFavoriteEventById(id: Int): LiveData<Boolean>
+    suspend fun getFavoriteEventById(id: Int): LiveData<Boolean>
 
     @Query("DELETE FROM favorite_events where id = :id")
-    fun deleteFavoriteEventById(id: Int)
+    suspend fun deleteFavoriteEventById(id: Int)
 
     @Query("SELECT * FROM favorite_events")
-    fun getFavoriteEvents(): List<EventEntity>
+    suspend fun getFavoriteEvents(): List<EventEntity>
 
 
 }
