@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
                                     view.findNavController().navigate(action)
 
                                 }
-                            })
+                            }, UPCOMING_EVENT_ITEM_WIDTH)
                         binding.rvUpComing.apply {
                             layoutManager = LinearLayoutManager(
                                 requireContext(),

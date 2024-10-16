@@ -22,13 +22,17 @@ class EventRepository private constructor(
 
             try {
                 val response = apiService.getAllEvents(status = status, query = query)
+                if (response.listEvents.isEmpty()) {
+                    emitSource(liveData { emit(Result.Success(emptyList())) })
+                    return@liveData
+                }
                 val events = response.listEvents.map {
                     EventItem(
                         id = it.id,
                         name = it.name,
                         mediaCover = it.mediaCover
                     )
-                } ?: emptyList()
+                }
                 emitSource(liveData { emit(Result.Success(events)) })
             } catch (e: Exception) {
                 Log.d("EventRepository", "Failed to get data: ${e.message}")
