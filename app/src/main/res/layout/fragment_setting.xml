@@ -7,22 +7,11 @@
     tools:context=".ui.SettingFragment">
 
 
-    <Button
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="@string/btn_text_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:text="@string/switch_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
