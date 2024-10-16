@@ -15,7 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dicodingevent.databinding.ActivityMainBinding
-import com.example.dicodingevent.ui.search_event.SearchEventFragment
+import com.example.dicodingevent.ui.SearchEventFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_upcoming,
                 R.id.navigation_finished,
-                R.id.navigation_search_event,
+                R.id.navigation_favorite_event,
                 R.id.navigation_home
             )
         )
@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                 val navController = navHostFragment.navController
                 findViewById<FragmentContainerView>(R.id.nav_host_fragment_search).visibility =
                     View.VISIBLE
+                findViewById<FragmentContainerView>(R.id.nav_host_fragment_activity_main).visibility =
+                    View.GONE
                 navController.navigate(R.id.searchEventFragment)
                 return true
             }
@@ -72,6 +74,8 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack()
                 findViewById<FragmentContainerView>(R.id.nav_host_fragment_search).visibility =
                     View.GONE
+                findViewById<FragmentContainerView>(R.id.nav_host_fragment_activity_main).visibility =
+                    View.VISIBLE
                 return true
             }
         })

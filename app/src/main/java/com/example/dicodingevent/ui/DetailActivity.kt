@@ -1,4 +1,4 @@
-package com.example.dicodingevent.ui.detail_event
+package com.example.dicodingevent.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -15,8 +15,6 @@ import com.example.dicodingevent.R
 import com.example.dicodingevent.data.Result
 import com.example.dicodingevent.data.model.EventItem
 import com.example.dicodingevent.databinding.ActivityDetailBinding
-import com.example.dicodingevent.ui.EventViewModel
-import com.example.dicodingevent.ui.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
 

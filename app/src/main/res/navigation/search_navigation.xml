@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/searchEventFragment"
-        android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
+        android:name="com.example.dicodingevent.ui.SearchEventFragment"
         android:label="Search Event"
         tools:layout="@layout/fragment_search_event">
         <action
@@ -16,7 +16,7 @@
 
     <activity
         android:id="@+id/detailActivity"
-        android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
+        android:name="com.example.dicodingevent.ui.DetailActivity"
         android:label="Detail Activity"
         tools:layout="@layout/activity_detail">
         <argument

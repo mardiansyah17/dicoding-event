@@ -23,4 +23,6 @@ class EventViewModel(private val eventRepository: EventRepository) : ViewModel()
         }
     }
 
+    fun getFavoriteEvents() = eventRepository.getFavoriteEvents()
+
 }

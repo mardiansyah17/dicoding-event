@@ -1,5 +1,5 @@
 // SearchEventFragment.kt
-package com.example.dicodingevent.ui.search_event
+package com.example.dicodingevent.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingevent.EventAdapter
 import com.example.dicodingevent.data.Result
 import com.example.dicodingevent.databinding.FragmentSearchEventBinding
-import com.example.dicodingevent.ui.EventViewModel
-import com.example.dicodingevent.ui.ViewModelFactory
 
 class SearchEventFragment : Fragment() {
 
@@ -36,7 +34,7 @@ class SearchEventFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchEvents("flut")
+        searchEvents("")
     }
 
     fun searchEvents(query: String) {

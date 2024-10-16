@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_favorite_event">
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.dicodingevent.ui.home.HomeFragment"
+        android:name="com.example.dicodingevent.ui.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -14,9 +14,10 @@
             app:destination="@id/detailActivity" />
     </fragment>
 
+
     <fragment
         android:id="@+id/navigation_upcoming"
-        android:name="com.example.dicodingevent.ui.upcoming.UpComingFragment"
+        android:name="com.example.dicodingevent.ui.UpComingFragment"
         android:label="UpComing"
         tools:layout="@layout/fragment_up_coming">
         <action
@@ -27,7 +28,7 @@
 
     <fragment
         android:id="@+id/navigation_search_event"
-        android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
+        android:name="com.example.dicodingevent.ui.SearchEventFragment"
         android:label="SearchEvent"
         tools:layout="@layout/fragment_search_event">
         <action
@@ -37,16 +38,28 @@
 
     <fragment
         android:id="@+id/navigation_finished"
-        android:name="com.example.dicodingevent.ui.finished.FinishedFragment"
+        android:name="com.example.dicodingevent.ui.FinishedFragment"
         android:label="@string/title_finished"
         tools:layout="@layout/fragment_finished">
         <action
             android:id="@+id/action_navigation_finished_to_detailActivity"
             app:destination="@id/detailActivity" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite_event"
+        android:name="com.example.dicodingevent.ui.FavoriteEventFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite_event">
+
+        <action
+            android:id="@+id/action_navigation_favorite_event_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+
     <activity
         android:id="@+id/detailActivity"
-        android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
+        android:name="com.example.dicodingevent.ui.DetailActivity"
         android:label="activity_detail"
         tools:layout="@layout/activity_detail">
         <argument

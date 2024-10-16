@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.dicodingevent.data.local.entity.EventEntity
+import com.example.dicodingevent.data.model.EventItem
 
 @Dao
 interface EventDao {
@@ -20,7 +21,7 @@ interface EventDao {
     suspend fun deleteFavoriteEventById(id: Int)
 
     @Query("SELECT * FROM favorite_events")
-    suspend fun getFavoriteEvents(): List<EventEntity>
+    fun getFavoriteEvents(): LiveData<List<EventItem>>
 
 
 }

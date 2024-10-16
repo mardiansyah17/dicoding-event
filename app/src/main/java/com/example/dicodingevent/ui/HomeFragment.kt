@@ -1,4 +1,4 @@
-package com.example.dicodingevent.ui.home
+package com.example.dicodingevent.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingevent.EventAdapter
 import com.example.dicodingevent.data.Result
 import com.example.dicodingevent.databinding.FragmentHomeBinding
-import com.example.dicodingevent.ui.EventViewModel
-import com.example.dicodingevent.ui.ViewModelFactory
 
 class HomeFragment : Fragment() {
 

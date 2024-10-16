@@ -46,4 +46,7 @@
     <string name="quota_remaining">Sisa kuota: %1$d</string>
     <string name="begin_time">Dimulai pada: %1$s</string>
     <string name="event_not_found">Event tidak di temukan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorite">Favorite</string>
 </resources>

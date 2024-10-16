@@ -28,7 +28,6 @@ class EventRepository private constructor(
                         mediaCover = it.mediaCover
                     )
                 } ?: emptyList()
-                Log.d("EventRepository", "Success to get data: $events")
                 emitSource(liveData { emit(Result.Success(events)) })
             } catch (e: Exception) {
                 Log.d("EventRepository", "Failed to get data: ${e.message}")
@@ -58,6 +57,10 @@ class EventRepository private constructor(
         } catch (e: Exception) {
             emitSource(liveData { emit(Result.Error("Failed to get data: ${e.message}")) })
         }
+    }
+
+    fun getFavoriteEvents(): LiveData<List<EventItem>> {
+        return eventDao.getFavoriteEvents()
     }
 
 
