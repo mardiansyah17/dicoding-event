@@ -7,7 +7,7 @@ import com.example.dicodingevent.data.model.EventItem
 import kotlinx.coroutines.launch
 
 class EventViewModel(private val eventRepository: EventRepository) : ViewModel() {
-    fun getAllEvent(status: Int) = eventRepository.getAllEvent(status)
+    fun getAllEvent(status: Int, query: String? = null) = eventRepository.getAllEvent(status, query)
     fun getDetailEvent(id: Int) = eventRepository.getDetailEvent(id)
     fun addFavoriteEvent(event: EventItem) {
         viewModelScope.launch {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/searchEventFragment">
+
+    <fragment
+        android:id="@+id/searchEventFragment"
+        android:name="com.example.dicodingevent.ui.search_event.SearchEventFragment"
+        android:label="Search Event"
+        tools:layout="@layout/fragment_search_event">
+        <action
+            android:id="@+id/action_navigation_search_event_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.example.dicodingevent.ui.detail_event.DetailActivity"
+        android:label="Detail Activity"
+        tools:layout="@layout/activity_detail">
+        <argument
+            android:name="id_event"
+            app:argType="integer" />
+    </activity>
+</navigation>

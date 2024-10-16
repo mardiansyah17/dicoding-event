@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.dicodingevent.data.model.EventItem
 
 class EventAdapter(
-    private val listEvent: List<EventItem>,
+    private var listEvent: List<EventItem>,
     private val listener: OnEventClickListener,
     private val width: Int? = null
 ) :
@@ -36,6 +36,7 @@ class EventAdapter(
         return ViewHolder(view)
     }
 
+  
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (width != null) {
             holder.itemCard.layoutParams.width = TypedValue.applyDimension(

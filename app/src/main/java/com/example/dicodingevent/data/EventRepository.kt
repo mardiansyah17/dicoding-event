@@ -15,27 +15,28 @@ class EventRepository private constructor(
     private val appExecutors: AppExecutors,
 ) {
 
-    fun getAllEvent(status: Int): LiveData<Result<List<EventItem>>> = liveData {
-        emit(Result.Loading)
+    fun getAllEvent(status: Int, query: String? = null): LiveData<Result<List<EventItem>>> =
+        liveData {
+            emit(Result.Loading)
 
-        try {
-            val response = apiService.getAllEvents(status = status)
-            val events = response.listEvents.map {
-                EventItem(
-                    id = it.id,
-                    name = it.name,
-                    mediaCover = it.mediaCover
-                )
-            } ?: emptyList()
-            Log.d("EventRepository", "Success to get data: $events")
-            emitSource(liveData { emit(Result.Success(events)) })
-        } catch (e: Exception) {
-            Log.d("EventRepository", "Failed to get data: ${e.message}")
-            emitSource(liveData { emit(Result.Error("Failed to get data: ${e.message}")) })
+            try {
+                val response = apiService.getAllEvents(status = status, query = query)
+                val events = response.listEvents.map {
+                    EventItem(
+                        id = it.id,
+                        name = it.name,
+                        mediaCover = it.mediaCover
+                    )
+                } ?: emptyList()
+                Log.d("EventRepository", "Success to get data: $events")
+                emitSource(liveData { emit(Result.Success(events)) })
+            } catch (e: Exception) {
+                Log.d("EventRepository", "Failed to get data: ${e.message}")
+                emitSource(liveData { emit(Result.Error("Failed to get data: ${e.message}")) })
+            }
+
+
         }
-
-
-    }
 
     fun getDetailEvent(id: Int): LiveData<Result<EventItem>> = liveData {
         emit(Result.Loading)
