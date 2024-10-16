@@ -68,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/tv_begin_time_detail_event"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
@@ -104,7 +104,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="96dp"
                 android:backgroundTint="?attr/colorPrimary"
-                android:contentDescription="tess"
+                android:contentDescription="@string/button_add_favorite"
                 android:src="@drawable/baseline_favorite_border_24"
                 app:layout_constraintBottom_toTopOf="@+id/tv_desc_detail_event"
                 app:layout_constraintEnd_toEndOf="parent"

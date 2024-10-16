@@ -51,4 +51,6 @@
     <string name="favorite">Favorite</string>
     <string name="switch_text">Ganti Tema</string>
     <string name="setting">Setting</string>
+    <string name="button_add_favorite">button add favorite</string>
+    <string name="cari_event">Cari event</string>
 </resources>

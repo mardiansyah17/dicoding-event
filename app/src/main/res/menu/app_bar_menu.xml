@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/search_icons"
-        android:title="Cari event"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        android:title="@string/cari_event"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>
