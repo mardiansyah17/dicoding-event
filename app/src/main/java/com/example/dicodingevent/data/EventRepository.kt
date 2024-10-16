@@ -2,17 +2,18 @@ package com.example.dicodingevent.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.example.dicodingevent.data.local.entity.EventEntity
 import com.example.dicodingevent.data.local.room.EventDao
 import com.example.dicodingevent.data.model.EventItem
 import com.example.dicodingevent.data.remote.retrofit.ApiService
-import com.example.dicodingevent.utils.AppExecutors
+import com.example.dicodingevent.utils.SettingPreferences
 
 class EventRepository private constructor(
     private val apiService: ApiService,
     private val eventDao: EventDao,
-    private val appExecutors: AppExecutors,
+    private val pref: SettingPreferences
 ) {
 
     fun getAllEvent(status: Int, query: String? = null): LiveData<Result<List<EventItem>>> =
@@ -36,6 +37,7 @@ class EventRepository private constructor(
 
 
         }
+
 
     fun getDetailEvent(id: Int): LiveData<Result<EventItem>> = liveData {
         emit(Result.Loading)
@@ -78,15 +80,23 @@ class EventRepository private constructor(
 
     }
 
+    fun getTheme(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    suspend fun saveTheme(isDarkMode: Boolean) {
+        pref.saveThemeSetting(isDarkMode)
+    }
+
     companion object {
         @Volatile
         private var instance: EventRepository? = null
         fun getInstance(
             apiService: ApiService,
             eventDao: EventDao,
-            appExecutors: AppExecutors
+            pref: SettingPreferences
         ): EventRepository = instance ?: synchronized(this) {
-            instance ?: EventRepository(apiService, eventDao, appExecutors)
+            instance ?: EventRepository(apiService, eventDao, pref)
         }.also { instance = it }
     }
 }

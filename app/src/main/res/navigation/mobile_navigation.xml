@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/navigation_favorite_event">
+    app:startDestination="@+id/navigation_setting">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -56,6 +56,12 @@
             android:id="@+id/action_navigation_favorite_event_to_detailActivity"
             app:destination="@id/detailActivity" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.example.dicodingevent.ui.SettingFragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_setting" />
 
     <activity
         android:id="@+id/detailActivity"

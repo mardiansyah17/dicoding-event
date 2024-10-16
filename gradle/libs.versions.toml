@@ -2,6 +2,7 @@
 agp = "8.6.1"
 androidGifDrawable = "1.2.29"
 daggerCompiler = "2.51.1"
+datastorePreferences = "1.1.1"
 glide = "4.16.0"
 kotlin = "2.0.20"
 coreKtx = "1.13.1"
@@ -27,6 +28,7 @@ roomRuntime = "2.6.1"
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePlugin" }
 androidx-room-ktx = { module = "androidx.room:room-ktx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
